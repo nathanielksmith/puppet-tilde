@@ -1,5 +1,8 @@
-# REQUIRED. This sets up the webserver.
-tilde::hostname: tilde.town
+# REQUIRED. This is used to set up a few of the servers (web, IRC, NNTP).
+tilde::hostname: your.new.fqdn
+
+# REQUIRED. This is used in the IRC server setup.
+tilde::irc::rootoperpass: example
 
 # OPTIONAL. This allows you to customize the package listing for your
 # server. The default packages are in manifests/packages.pp.

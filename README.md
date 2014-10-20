@@ -14,6 +14,7 @@ to date as I change things / add features.
 
  * Install puppet and puppetmaster (they can be on the same
    server). 3.4.x+ is required.
+ * `puppet module install hunner-charybdis` *on the puppetmaster*
  * `puppet module install jfryman-nginx`
  * `puppet module install camptocamp-postfix`
  * Set up hiera:
@@ -21,9 +22,9 @@ to date as I change things / add features.
   * `ln -s /etc/puppet/hiera.yaml /etc/hiera.yaml`
   * `mkdir /etc/puppet/hieradata`
   * add and **configure** [common.yaml](https://github.com/nathanielksmith/puppet-tilde/tree/master/examples/common.yaml) to `/etc/puppet/hieradata/`
+  * also add and **configure** [common.yaml](https://github.com/nathanielksmith/puppet-tilde/tree/master/examples/common.yaml) to `/etc/puppet/hierdata/node/[yourhostfqdn].yaml`
  * `cd /etc/puppet/modules`
  * `git clone https://github.com/nathanielksmith/puppet-tilde.git tilde`
- * `git clone https://github.com/nathanielksmith/puppet-ngircd ngircd`
  * edit [site.pp](https://github.com/nathanielksmith/puppet-tilde/tree/master/examples/site.pp) and save to `/etc/puppet/manifests/site.pp`
  * `puppet agent -t`
 
@@ -70,16 +71,12 @@ or _tilde.farm_ or _drawbridge.club_) and sets up an nginx vhost with:
 
 ## IRC
 
-The module sets up ngircd for you.
+The module sets up the charybdis IRC server for you.
 
- * localhost only
  * "irc" alias added to users' .bashrc
- * per-user irssi config this will auto-connect to the
-   server and auto-join #<hostname> where hostname is a .-less string
-   substitution of the hostname you specified as `tilde::hostname`.
+ * per-user irssi config this will auto-connect to the server and auto-join #<hostname> where hostname is a .-less string substitution of the hostname you specified as `tilde::hostname`.
 
-It does **not** set up an operator. IRC governance is up to the
-autonomous collective to determine.
+Your localhost root user will have OPER privileges in IRC, using the password you configured in your `[yourhostfqdn].yaml` or `common.yaml` file.
 
 ## Mail
 
@@ -151,6 +148,7 @@ or configure common.yaml with
 
  * Nathaniel Smith <nks@lambdaphil.es>
  * Chris Roddy <cmr@mdc2.org>
+ * Jason Levine <jason@queso.com>
 
 ## License
 

@@ -1,6 +1,7 @@
 # You should be able to copy this wholesale. Just don't forget to
 # mkdir /etc/puppet/hieradata.
 :hierarchy:
+  - "node/%{::fqdn}"
   - common
 
 :backends:
